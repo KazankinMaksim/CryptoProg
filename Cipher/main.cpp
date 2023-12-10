@@ -5,8 +5,6 @@ int main ()
     bool is_running = true;
     string operation_mode;
     string input_file, output_file, iv_file, password;
-    cout << "Добро пожаловать в программу." << endl;
-    cout << "Справки о режимах работы программы:" << endl;
     cout << " Enc - шифрование с использованием алгоритма \"AES\"" << endl;
     cout << " Dec- расшифрование с использованием алгоритма \"AES\"" << endl;
     do {
@@ -45,7 +43,6 @@ int main ()
             }
         }
         if (operation_mode == "exit") {
-            cout << "Программа завершила работу." << endl;
             is_running = false;
             break;
         }
