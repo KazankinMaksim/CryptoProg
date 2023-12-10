@@ -24,11 +24,6 @@ string read_file(string way){
 
 int main (){
     CryptoPP::SHA256 hash; // создание хэш-объекта
-
-    cout <<"Algorithm: " << hash.AlgorithmName() << endl; // Имя алгоритма
-    cout << "Diget size:" << hash.DigestSize() << endl; //размер хэша
-    cout << "Block size:" << hash.BlockSize() << endl; // размер внутреннего Блока
-
     string path = "hash.txt"; // Путь до файла
     string FileContent;
     try {
@@ -40,13 +35,7 @@ int main (){
 
     cout << "File content: " << FileContent << endl; // содержимое файла
 
-    vector<CryptoPP::byte> digest (hash.DigestSize());
-
-    hash.Update(reinterpret_cast<const CryptoPP::byte*>(FileContent.data()),FileContent.size()); // формируем хэш
-    hash.Final(digest.data()); // получаем хэш
-
-    cout << "HASH in HEX format: ";
-    CryptoPP::StringSource(digest.data(),digest.size(),true, new  CryptoPP::HexEncoder(new  CryptoPP::FileSink(cout))); // выводим хэш в формате "hex"
-    cout << endl;
+    CryptoPP::FileSource(path.c_str(), true, new CryptoPP::HashFilter(hash, new CryptoPP::HexEncoder(new CryptoPP::FileSink(cout), true)));
+    cout <<"\n"<< endl;
     return 0;
 }
