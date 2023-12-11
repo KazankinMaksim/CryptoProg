@@ -59,7 +59,7 @@ void AlgorithmAES::decodeAES (AlgorithmAES dec)
         throw string ("Ошибка:: Файл \"IV\" (с вектором инициализации) некорректный");
         v_IV.close();
     }
-    // cipher DES in CBC mode for decryption: decr
+    // cipher AES in CBC mode for decryption: decr
     CryptoPP::CBC_Mode<CryptoPP::AES>::Decryption decr;
     // set IV and Key to cipher
     decr.SetKeyWithIV(key, sizeof key, iv);
